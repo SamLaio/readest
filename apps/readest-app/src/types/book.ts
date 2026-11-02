@@ -273,6 +273,7 @@ export interface BookLayout {
   lockHorizontalPan: boolean;
   noContinuousScroll: boolean;
   disableClick: boolean;
+  edgeClickToChangeChapter: boolean;
   disableSwipe: boolean;
   disablePullDownToBookmark: boolean;
   fullscreenClickArea: boolean;

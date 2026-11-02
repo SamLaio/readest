@@ -403,6 +403,18 @@ export const usePagination = (
                 return;
               }
 
+              const edgeSide =
+                screenX >= viewStartX && screenX < viewStartX + viewRect.width * 0.1
+                  ? 'left'
+                  : screenX > viewStartX + viewRect.width * 0.9 &&
+                      screenX <= viewStartX + viewRect.width
+                    ? 'right'
+                    : null;
+              if (viewSettings.edgeClickToChangeChapter && edgeSide) {
+                viewPagination(viewRef.current, viewSettings, edgeSide, 'section');
+                return;
+              }
+
               const side: PaginationSide =
                 screenX >= zoneCenterX
                   ? viewSettings.fullscreenClickArea

@@ -477,6 +477,12 @@ const controlPanelItems = [
     section: 'Pagination',
   },
   {
+    id: 'settings.control.edgeClickToChangeChapter',
+    labelKey: _('Click Screen Edges to Change Chapters'),
+    keywords: ['click', 'tap', 'edge', 'chapter', 'section'],
+    section: 'Pagination',
+  },
+  {
     id: 'settings.control.swapClickSides',
     labelKey: _('Swap Click Sides'),
     keywords: ['swap', 'click', 'tap', 'sides', 'reverse'],

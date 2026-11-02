@@ -40,7 +40,9 @@ const PageNavigationButtons: React.FC<PageNavigationButtonsProps> = ({
   const navigationButtonSize =
     !isPageNavigationButtonsVisible && appService?.isAndroidApp
       ? 'h-2 w-2 overflow-hidden'
-      : 'h-20 w-20';
+      : viewSettings?.edgeClickToChangeChapter
+        ? 'h-20 w-40'
+        : 'h-20 w-20';
 
   const handleGoLeftPage = useCallback(() => {
     viewPagination(view, viewSettings, 'left', 'page');
@@ -98,27 +100,29 @@ const PageNavigationButtons: React.FC<PageNavigationButtonsProps> = ({
           !isPageNavigationButtonsVisible ? 'pointer-events-none' : '',
         )}
       >
-        <button
-          onClick={handleGoLeftSection}
-          className={clsx(
-            'flex items-center justify-center focus:outline-hidden',
-            navigationButtonSize,
-          )}
-          aria-hidden={false}
-          aria-label={getLeftSectionLabel()}
-          tabIndex={0}
-        >
-          <span
+        {!viewSettings?.edgeClickToChangeChapter && (
+          <button
+            onClick={handleGoLeftSection}
             className={clsx(
-              'flex h-12 w-12 items-center justify-center rounded-full',
-              'bg-base-100/90 shadow-lg backdrop-blur-xs',
-              'eink:border eink:border-base-content not-eink:group-hover:bg-base-200',
-              'transition-transform active:scale-95',
+              'flex items-center justify-center focus:outline-hidden',
+              navigationButtonSize,
             )}
+            aria-hidden={false}
+            aria-label={getLeftSectionLabel()}
+            tabIndex={0}
           >
-            <RiArrowLeftDoubleLine size={24} />
-          </span>
-        </button>
+            <span
+              className={clsx(
+                'flex h-12 w-12 items-center justify-center rounded-full',
+                'bg-base-100/90 shadow-lg backdrop-blur-xs',
+                'eink:border eink:border-base-content not-eink:group-hover:bg-base-200',
+                'transition-transform active:scale-95',
+              )}
+            >
+              <RiArrowLeftDoubleLine size={24} />
+            </span>
+          </button>
+        )}
         <button
           onClick={handleGoLeftPage}
           className={clsx(
@@ -171,27 +175,29 @@ const PageNavigationButtons: React.FC<PageNavigationButtonsProps> = ({
             <IoChevronForward size={24} />
           </span>
         </button>
-        <button
-          onClick={handleGoRightSection}
-          className={clsx(
-            'flex items-center justify-center focus:outline-hidden',
-            navigationButtonSize,
-          )}
-          aria-hidden={false}
-          aria-label={getRightSectionLabel()}
-          tabIndex={0}
-        >
-          <span
+        {!viewSettings?.edgeClickToChangeChapter && (
+          <button
+            onClick={handleGoRightSection}
             className={clsx(
-              'flex h-12 w-12 items-center justify-center rounded-full',
-              'bg-base-100/90 shadow-lg backdrop-blur-xs',
-              'eink:border eink:border-base-content not-eink:group-hover:bg-base-200',
-              'transition-transform active:scale-95',
+              'flex items-center justify-center focus:outline-hidden',
+              navigationButtonSize,
             )}
+            aria-hidden={false}
+            aria-label={getRightSectionLabel()}
+            tabIndex={0}
           >
-            <RiArrowRightDoubleLine size={24} />
-          </span>
-        </button>
+            <span
+              className={clsx(
+                'flex h-12 w-12 items-center justify-center rounded-full',
+                'bg-base-100/90 shadow-lg backdrop-blur-xs',
+                'eink:border eink:border-base-content not-eink:group-hover:bg-base-200',
+                'transition-transform active:scale-95',
+              )}
+            >
+              <RiArrowRightDoubleLine size={24} />
+            </span>
+          </button>
+        )}
       </div>
     </>
   );

@@ -384,6 +384,7 @@ export const DEFAULT_BOOK_LAYOUT: BookLayout = {
   lockHorizontalPan: false,
   noContinuousScroll: false,
   disableClick: false,
+  edgeClickToChangeChapter: false,
   disableSwipe: false,
   disablePullDownToBookmark: false,
   fullscreenClickArea: false,

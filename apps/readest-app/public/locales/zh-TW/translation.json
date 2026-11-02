@@ -2600,5 +2600,7 @@
   "Click": "單擊",
   "Long Press": "長按",
   "Weight": "字重",
-  "Slightly heavier": "稍粗"
+  "Slightly heavier": "稍粗",
+  "Click Screen Edges to Change Chapters": "點擊畫面最兩側切換章節",
+  "When controls are hidden, the outer 10% on the left and right switches to the previous and next chapter. Hide chapter buttons and widen page buttons.": "隱藏閱讀工具列時，點擊左右兩側各 10% 的區域可切換上一章與下一章。隱藏切章按鈕，並擴大翻頁按鈕範圍。"
 }

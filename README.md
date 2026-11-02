@@ -96,6 +96,8 @@ Stay tuned for continuous improvements and updates! Contributions and suggestion
 
 ---
 
+本機自用 Android 建置使用套件識別碼 `tw.idv.samliao.readest`，以獨立 App 安裝；不會自動繼承上游版本的書庫與設定。APK 輸出至專案根目錄的 `release/[版本]/release.apk`。
+
 ## Downloads
 
 ### Mobile Apps

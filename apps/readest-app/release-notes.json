@@ -1,8 +1,11 @@
 {
   "releases": {
     "0.12.16": {
-      "date": "2026-10-14",
+      "date": "2026-11-03",
       "notes": [
+        "Android 自用版：套件識別碼改為 tw.idv.samliao.readest，與原版分開安裝及保存資料。",
+        "閱讀控制：新增畫面兩側切章選項；工具列隱藏時，點擊最兩側各 10% 可切換章節。",
+        "閱讀控制：啟用上述選項時隱藏雙箭頭切章按鈕，並將左右翻頁按鈕點擊範圍加倍；關閉時恢復原本四個按鈕。",
         "Text-to-Speech: Added Readest Voice premium read-aloud voices for Plus and Pro, you can now connect your own OpenAI-compatible voice service, and Edge voices work again",
         "Annotations: You can now handwrite and draw on your pages, and share passages as quote card images",
         "Library: Books now show their page count with a new Pages sort and filter that syncs across devices, and numbered titles sort in natural order",

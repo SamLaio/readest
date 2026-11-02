@@ -62,3 +62,16 @@ apps/readest.koplugin/native/localsend-bin/target/
 
 # scripts/tauri.mjs parks the wry Cargo.lock here during a Linux CEF build
 /Cargo.lock.wry
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+
+# Local Android releases, signing files and IDE state
+/release/
+.idea/
+*.apk
+*.aab
+*.jks
+*.keystore
+keystore.properties
+local.properties

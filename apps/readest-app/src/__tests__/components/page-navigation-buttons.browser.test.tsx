@@ -7,6 +7,7 @@ const mockPlatform = vi.hoisted(() => ({
   isAndroidApp: true,
   hoveredBookKey: null as string | null,
   showPaginationButtons: false,
+  edgeClickToChangeChapter: false,
 }));
 
 vi.mock('@/context/EnvContext', () => ({
@@ -17,7 +18,11 @@ vi.mock('@/store/readerStore', () => ({
   useReaderStore: (
     selector: (state: {
       getView: () => null;
-      getViewSettings: () => { rtl: boolean; showPaginationButtons: boolean };
+      getViewSettings: () => {
+        rtl: boolean;
+        showPaginationButtons: boolean;
+        edgeClickToChangeChapter: boolean;
+      };
       hoveredBookKey: string | null;
     }) => unknown,
   ) =>
@@ -26,6 +31,7 @@ vi.mock('@/store/readerStore', () => ({
       getViewSettings: () => ({
         rtl: false,
         showPaginationButtons: mockPlatform.showPaginationButtons,
+        edgeClickToChangeChapter: mockPlatform.edgeClickToChangeChapter,
       }),
       hoveredBookKey: mockPlatform.hoveredBookKey,
     }),
@@ -69,9 +75,28 @@ afterEach(() => {
   mockPlatform.isAndroidApp = true;
   mockPlatform.hoveredBookKey = null;
   mockPlatform.showPaginationButtons = false;
+  mockPlatform.edgeClickToChangeChapter = false;
 });
 
 describe('PageNavigationButtons hit areas', () => {
+  it('replaces chapter controls with wider page controls when edge chapter taps are enabled', () => {
+    mockPlatform.edgeClickToChangeChapter = true;
+    mockPlatform.showPaginationButtons = true;
+    mockPlatform.hoveredBookKey = 'book';
+    render(<PageNavigationButtons bookKey='book' isDropdownOpen={false} />);
+
+    expect(screen.queryByRole('button', { name: 'Previous Section' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Next Section' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'Previous Page' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Next Page' })).toBeTruthy();
+    for (const name of ['Previous Page', 'Next Page']) {
+      const button = screen.getByRole('button', { name });
+      const bounds = button.getBoundingClientRect();
+      expect([bounds.width, bounds.height]).toEqual([160, 80]);
+      expect(button.contains(hitTargetAt(button, 4))).toBe(true);
+    }
+  });
+
   it('shrinks all four hidden controls so they do not cover selectable text', () => {
     render(<PageNavigationButtons bookKey='book' isDropdownOpen={false} />);
 

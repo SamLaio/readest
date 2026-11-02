@@ -17,7 +17,7 @@ val tauriProperties = Properties().apply {
 
 android {
     compileSdk = 36
-    namespace = "com.bilingify.readest"
+    namespace = "tw.idv.samliao.readest"
     if (project.findProperty("penFlavor") == "booxPen") {
         // The BOOX Pen SDK and its mmkv dependency both bundle libc++_shared.
         packaging.jniLibs.pickFirsts.add("lib/*/libc++_shared.so")
@@ -47,7 +47,7 @@ android {
                         ?.substringAfter("=")?.trim()?.trim('"', '\'')?.takeIf { it.isNotEmpty() }
                 }
             ?: ""
-        applicationId = "com.bilingify.readest"
+        applicationId = "tw.idv.samliao.readest"
         minSdk = 26
         targetSdk = 36
         versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
@@ -64,7 +64,7 @@ android {
         // the car meta-data to an inert name: Auto ignores it and Play does not
         // put the submission through Auto review. Nothing else reads it.
         manifestPlaceholders["carAppMetaName"] = if (storeFlavor == "googleplay") {
-            "com.bilingify.readest.androidauto.withheld"
+            "tw.idv.samliao.readest.androidauto.withheld"
         } else {
             "com.google.android.gms.car.application"
         }

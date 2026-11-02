@@ -43,6 +43,7 @@ Entitlements*.plist
 tauri.*.conf.json
 # tracked exception: the direct-distribution iCloud overlay ships in the repo
 !tauri.macos-nonestore.conf.json
+!tauri.android.conf.json
 
 # vercel
 .vercel
@@ -59,7 +60,10 @@ next-env.d.ts
 .eslintcache
 
 #generated
-src-tauri/gen
+src-tauri/gen/**
+!src-tauri/gen/**/
+!src-tauri/gen/android/app/src/main/java/tw/idv/samliao/readest/MainActivity.kt
+!src-tauri/gen/android/app/src/test/java/tw/idv/samliao/readest/KeyLearnCaptureTest.kt
 
 # local dev overrides (personal signing, etc.)
 src-tauri/tauri.*.local.json

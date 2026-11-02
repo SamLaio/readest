@@ -53,6 +53,9 @@ const ControlPanel: React.FC<SettingsPanelPanelProp> = ({ bookKey, onRegisterRes
   const [stablePageNumbers, setStablePageNumbers] = useState(
     viewSettings.stablePageNumbers ?? true,
   );
+  const [edgeClickToChangeChapter, setEdgeClickToChangeChapter] = useState(
+    viewSettings.edgeClickToChangeChapter ?? false,
+  );
   const [isDisableClick, setIsDisableClick] = useState(viewSettings.disableClick);
   const [isDisableSwipe, setIsDisableSwipe] = useState(viewSettings.disableSwipe);
   const [disablePullDownToBookmark, setDisablePullDownToBookmark] = useState(
@@ -188,6 +191,7 @@ const ControlPanel: React.FC<SettingsPanelPanelProp> = ({ bookKey, onRegisterRes
       showPaginationButtons: setShowPaginationButtons,
       stablePageNumbers: setStablePageNumbers,
       disableClick: setIsDisableClick,
+      edgeClickToChangeChapter: setEdgeClickToChangeChapter,
       disableSwipe: setIsDisableSwipe,
       disablePullDownToBookmark: setDisablePullDownToBookmark,
       swapClickArea: setSwapClickArea,
@@ -289,6 +293,18 @@ const ControlPanel: React.FC<SettingsPanelPanelProp> = ({ bookKey, onRegisterRes
     saveViewSettings(envConfig, bookKey, 'disableClick', isDisableClick, false, false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDisableClick]);
+
+  useEffect(() => {
+    saveViewSettings(
+      envConfig,
+      bookKey,
+      'edgeClickToChangeChapter',
+      edgeClickToChangeChapter,
+      false,
+      false,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [edgeClickToChangeChapter]);
 
   // The renderer reads `turn-style`/`no-swipe` at touchmove/touchend time, so
   // settings changes have to push the attributes through immediately rather
@@ -566,6 +582,16 @@ const ControlPanel: React.FC<SettingsPanelPanelProp> = ({ bookKey, onRegisterRes
           label={appService?.isMobileApp ? _('Tap to Paginate') : _('Click to Paginate')}
           checked={!isDisableClick}
           onChange={() => setIsDisableClick(!isDisableClick)}
+        />
+        <SettingsSwitchRow
+          label={_('Click Screen Edges to Change Chapters')}
+          description={_(
+            'When controls are hidden, the outer 10% on the left and right switches to the previous and next chapter. Hide chapter buttons and widen page buttons.',
+          )}
+          checked={edgeClickToChangeChapter}
+          disabled={isDisableClick}
+          onChange={() => setEdgeClickToChangeChapter(!edgeClickToChangeChapter)}
+          data-setting-id='settings.control.edgeClickToChangeChapter'
         />
         <SettingsSwitchRow
           label={_('Swipe to Paginate')}

@@ -1,4 +1,4 @@
-package com.bilingify.readest
+package tw.idv.samliao.readest
 
 import android.os.Build
 import android.os.Bundle

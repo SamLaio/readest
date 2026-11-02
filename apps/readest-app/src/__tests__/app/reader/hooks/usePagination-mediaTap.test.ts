@@ -220,3 +220,21 @@ describe('usePagination center tap on an overflowing fixed-layout page (#6866)',
     );
   });
 });
+
+describe('chapter navigation at the outer edges', () => {
+  test.each([
+    [50, false, false],
+    [950, false, false],
+    [50, true, false],
+    [950, false, true],
+  ])('edge at %i with rtl=%s scrolled=%s changes chapter', async (x, rtl, scrolled) => {
+    h.viewSettings = { edgeClickToChangeChapter: true, rtl, scrolled };
+    const prevSection = vi.fn();
+    const nextSection = vi.fn();
+    const { view, tap } = setup(2, { prevSection, nextSection, scrolled });
+    await tap(x);
+    expect(x < 500 !== rtl ? prevSection : nextSection).toHaveBeenCalledTimes(1);
+    expect(view.next).not.toHaveBeenCalled();
+    expect(view.prev).not.toHaveBeenCalled();
+  });
+});
