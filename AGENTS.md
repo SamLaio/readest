@@ -6,6 +6,7 @@
 
 - Readest 是跨平台電子書閱讀器，支援 Android、iOS、Windows、macOS、Linux 與 Web。
 - 本庫是 pnpm monorepo；主程式位於 `apps/readest-app/`，使用 Next.js／React／TypeScript 與 Tauri v2／Rust，電子書渲染沿用 `packages/foliate-js/`。
+- 此自用倉庫不使用 GitHub 的自動建置、自動測試或部署；GitHub Actions 必須維持停用。所有驗證與 Android release 建置在本機執行，完成後手動 push 與發布附件，不得自行啟用 Actions。
 - 本機 App 建置範圍預設僅限 `apps/readest-app/` 的 Android 版本；除非使用者明確要求，不建置 Windows、macOS、Linux、iOS 或獨立 Web 發布產物。Android 建置所需的前端與 Rust 編譯仍須完成。
 - 自用 Android App 識別碼固定為 `tw.idv.samliao.readest`，由 `apps/readest-app/src-tauri/tauri.android.conf.json` 覆寫；Android Gradle 的 applicationId、namespace 與主程式 package 必須一致。
 - Android 原生整合位於 `apps/readest-app/src-tauri/`，不是獨立的 Compose 或 2FA 驗證器專案；另有 KOReader、Calibre 等整合子專案。
